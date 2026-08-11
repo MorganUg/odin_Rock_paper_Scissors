@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  
+
+  <script>
+    const randomNumber = Math.random();
+    
+    function playGame(){
+
+      let playerScore = 0;
+      let computerScore = 0;
+
+      
+      const playRound = (humanChoice, computerChoice) => {
+
+        if(humanChoice === "rock") {
+          if(computerChoice === "rock"){
+            console.log(`You Tie! You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }else if(computerChoice === "paper"){
+            computerScore += 1;
+            console.log(`You Lose! paper beats rock, You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }else if(computerChoice === "scissors"){
+            playerScore += 1;
+            console.log(`You Win! rock beats scissors, You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }
+        }else if(humanChoice === "paper") {
+          if(computerChoice === "paper"){
+            console.log(`You Tie! You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }else if(computerChoice === "scissors"){
+            computerScore += 1;
+            console.log(`You Lose! scissors beats paper, You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }else if(computerChoice === "rock"){
+            playerScore += 1;
+            console.log(`You Win! paper beats rock, You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }
+        }else if(humanChoice === "scissors") {
+          if(computerChoice === "scissors"){
+            console.log(`You Tie! You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }else if(computerChoice === "rock"){
+            computerScore += 1;
+            console.log(`You Lose! rock beats scissors, You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }else if(computerChoice === "paper"){
+            playerScore += 1;
+            console.log(`You Win! scissors beats paper, You Chose ${humanChoice} and computer chose ${computerChoice}`)
+          }
+        }
+      }
+      
+      for(let i = 1; i <= 5; i++){
+        playRound(humanSelection(), computerSelection())
+
+        if(i === 5){
+          if(playerScore > computerScore){
+            console.log(`You Win! in ${i} rounds, Game Over`)
+          }else{
+            console.log(`You Lost! in ${i} rounds, Game Over`)
+          }
+        }
+      }
+    }
+
+    const computerSelection = () => {
+      let computerChoice = "";
+      
+      if((randomNumber > 0) && (randomNumber <= 1/3)) {
+        computerChoice = "rock";
+      } else if((randomNumber > 1/3) && (randomNumber <= 2/3)) {
+        computerChoice = "paper";
+      } else {
+        computerChoice = "scissors";
+      }
+      return computerChoice;
+    }
+
+    const humanSelection = () => {
+      let humanChoice = "";
+      let choice = prompt("Please enter choice:").toLowerCase();
+
+      if(choice === "rock"){
+        humanChoice = "rock";
+      } else if (choice === "paper"){
+        humanChoice = "paper";
+      } else if(choice === "scissors"){
+        humanChoice = "scissors";
+      }else {
+        console.log("Enter rock, Papper or Scisors")
+        return
+      }
+      return humanChoice;
+    }
+    
+    playGame();
+
+  </script>
+</body>
+</html>
